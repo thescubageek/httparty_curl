@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    httparty_curl (0.1.0)
+    httparty_curl (0.1.1)
       httparty (~> 0.22)
       minitest (~> 5.25)
       webmock (~> 3.23)
