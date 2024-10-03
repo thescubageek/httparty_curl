@@ -110,7 +110,7 @@ The cURL command generation handles headers, query parameters, and request body 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/yourusername/httparty_curl.
+Bug reports and pull requests are welcome on GitHub at https://github.com/thescubageek/httparty_curl.
 
 ## License
 
