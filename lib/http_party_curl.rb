@@ -3,6 +3,7 @@
 require 'httparty'
 require 'http_party_curl/version'
 require 'logger'
+require 'json'
 
 # Main module for the HttpPartyCurl gem.
 # Provides functionality to log HTTParty requests as cURL commands.
@@ -21,7 +22,7 @@ module HttpPartyCurl
     # Initializes the configuration with default values.
     def initialize
       @curl_logging_enabled = false
-      @logger = Logger.new($stdout)
+      @logger = ::Logger.new($stdout)
     end
   end
 

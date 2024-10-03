@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "http_party_curl"
-  spec.version       = HttpPartyCurl::VERSION
+  spec.version       = "0.1.0"
   spec.authors       = ["TheScubaGeek"]
 
   spec.summary       = "A gem to log HTTParty requests as cURL commands."
@@ -10,14 +10,12 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/thescubageek/http_party_curl"
   spec.license       = "MIT"
 
-  spec.required_ruby_version = ">= 2.5.0"
+  spec.required_ruby_version = '>= 3.0.0'
 
-  spec.files         = Dir["lib/**/*.rb"] + ["README.md", "LICENSE.txt"]
+  spec.files         = Dir["lib/**/*", "test/**/*", "README.md", "LICENSE.txt"]
   spec.require_paths = ["lib"]
 
   spec.add_dependency "httparty"
   spec.add_dependency "logger"
-
-  # If you chose minitest as your test framework
-  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_dependency "minitest"
 end
