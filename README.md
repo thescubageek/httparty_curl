@@ -1,31 +1,117 @@
-# HttpPartyCurl
 
-TODO: Delete this and the text below, and describe your gem
+# HttpPartyCurl::Logger
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/http_party_curl`. To experiment with that code, run `bin/console` for an interactive prompt.
+`HttpPartyCurl::Logger` is a module that extends HTTParty to log HTTP requests as cURL commands. This is useful for debugging and inspecting outgoing requests in a readable format, replicating them in a terminal if needed.
+
+## Features
+
+- Logs HTTP requests made using HTTParty as cURL commands.
+- Supports common HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`.
+- Automatically includes headers, query parameters, authentication, and proxy settings in the cURL command.
+- Customizable logging configuration.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
+```ruby
+gem 'http_party_curl'
+```
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+And then execute:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+```bash
+bundle install
+```
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+Or install it yourself as:
+
+```bash
+gem install http_party_curl
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+To use `HttpPartyCurl::Logger`, simply include it in your class that uses HTTParty:
 
-## Development
+```ruby
+require 'http_party_curl/logger'
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+class MyApiClient
+  include HTTParty
+  include HttpPartyCurl::Logger
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+  base_uri 'https://api.example.com'
+
+  def fetch_data
+    self.class.get('/data', headers: { 'Authorization' => 'Bearer token' })
+  end
+end
+```
+
+Now, every request will be logged as a cURL command if logging is enabled.
+
+### Enabling Logging
+
+To enable logging, you need to configure the `HttpPartyCurl` logger and set `curl_logging_enabled` to `true`. You can customize the logger based on your logging setup.
+
+```ruby
+HttpPartyCurl.configure do |config|
+  config.curl_logging_enabled = true
+  config.logger = Logger.new(STDOUT) # or any other logger
+end
+```
+
+## Example Output
+
+When a request is made, the cURL command will be logged like this:
+
+```bash
+HTTParty cURL command:
+curl -X GET 'https://api.example.com/data' \
+  -H 'Authorization: Bearer token'
+```
+
+### Proxy Support
+
+If you are using proxies, the proxy settings will also be included in the cURL command:
+
+```bash
+HTTParty cURL command:
+curl -X GET 'https://api.example.com/data' \
+  --proxy 'http://proxy_user:proxy_pass@proxy.example.com:8080' \
+  -H 'Authorization: Bearer token'
+```
+
+### Authentication
+
+Basic and Digest authentication methods are also supported and included in the cURL command:
+
+```bash
+curl -X GET 'https://api.example.com/data' \
+  -u 'username:password'
+```
+
+## Customization
+
+### Supported HTTP Methods
+
+By default, the following HTTP methods are overridden with logging:
+
+- `GET`
+- `POST`
+- `PUT`
+- `PATCH`
+- `DELETE`
+
+### Custom Headers, Body, and Query Parameters
+
+The cURL command generation handles headers, query parameters, and request body data (including multipart forms and JSON payloads).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/http_party_curl.
+Bug reports and pull requests are welcome on GitHub at https://github.com/yourusername/http_party_curl.
+
+## License
+
+The gem is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
