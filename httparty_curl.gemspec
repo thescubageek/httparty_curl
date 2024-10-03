@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "httparty_curl"
-  spec.version       = "0.1.0"
+  spec.version       = "0.1.1"
   spec.authors       = ["TheScubaGeek"]
 
   spec.summary       = "A gem to log HTTParty requests as cURL commands."

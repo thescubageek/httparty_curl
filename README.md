@@ -92,6 +92,26 @@ curl -X GET 'https://api.example.com/data' \
   -u 'username:password'
 ```
 
+## Environment-Based Logging
+
+By default, `HTTPartyCurl` enables cURL logging in `development` and `test` environments when used within a Rails application. In other environments, logging is disabled by default.
+
+### Rails Applications
+
+No additional configuration is needed. Logging is automatically enabled in `development` and `test` environments.
+
+### Non-Rails Applications
+
+For non-Rails applications, you can manually set the environment or configure logging:
+
+```ruby
+# Set the environment (e.g., :development, :test, :production)
+HTTPartyCurl.configuration.environment = :development
+
+# Or manually enable logging
+HTTPartyCurl.configuration.curl_logging_enabled = true
+```
+
 ## Customization
 
 ### Supported HTTP Methods

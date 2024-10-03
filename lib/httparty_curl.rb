@@ -13,16 +13,38 @@ module HTTPartyCurl
 
   # Configuration class to store gem settings.
   class Configuration
-    # @return [Boolean] whether cURL logging is enabled.
-    attr_accessor :curl_logging_enabled
+    attr_accessor :curl_logging_enabled, :logger
+    attr_reader :environment
 
-    # @return [Logger] the logger instance used for logging.
-    attr_accessor :logger
-
-    # Initializes the configuration with default values.
     def initialize
-      @curl_logging_enabled = false
+      @environment = detect_environment
+      @curl_logging_enabled = default_logging_enabled?
       @logger = ::Logger.new($stdout)
+    end
+
+    # Sets the environment
+    #
+    # @param env [tring|Symbol] environment
+    def environment=(env)
+      @environment = env&.to_sym
+      @curl_logging_enabled = default_logging_enabled?
+    end
+
+    private
+
+    # Detects the environment or sets it to :production by default
+    def detect_environment
+      if defined?(Rails)
+        Rails.env.to_sym
+      else
+        # Default to :production for non-Rails applications
+        :production
+      end
+    end
+
+    # Determines if logging should be enabled by default
+    def default_logging_enabled?
+      %i[development test].include?(@environment)
     end
   end
 
