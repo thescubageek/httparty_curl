@@ -1,13 +1,13 @@
-# http_party_curl.gemspec
+# httparty_curl.gemspec
 
 Gem::Specification.new do |spec|
-  spec.name          = "http_party_curl"
+  spec.name          = "httparty_curl"
   spec.version       = "0.1.0"
   spec.authors       = ["TheScubaGeek"]
 
   spec.summary       = "A gem to log HTTParty requests as cURL commands."
-  spec.description   = "HttpPartyCurl adds cURL logging capabilities to HTTParty requests for debugging purposes."
-  spec.homepage      = "https://github.com/thescubageek/http_party_curl"
+  spec.description   = "HTTPartyCurl adds cURL logging capabilities to HTTParty requests for debugging purposes."
+  spec.homepage      = "https://github.com/thescubageek/httparty_curl"
   spec.license       = "MIT"
 
   spec.required_ruby_version = '>= 3.0.0'

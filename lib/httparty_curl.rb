@@ -1,13 +1,13 @@
-# lib/http_party_curl.rb
+# lib/httparty_curl.rb
 
 require 'httparty'
-require 'http_party_curl/version'
+require 'httparty_curl/version'
 require 'logger'
 require 'json'
 
-# Main module for the HttpPartyCurl gem.
+# Main module for the HTTPartyCurl gem.
 # Provides functionality to log HTTParty requests as cURL commands.
-module HttpPartyCurl
+module HTTPartyCurl
   # Custom error class for the gem.
   class Error < StandardError; end
 
@@ -33,7 +33,7 @@ module HttpPartyCurl
     # Configures the gem settings.
     # @yieldparam config [Configuration] the configuration object to set options.
     # @example
-    #   HttpPartyCurl.configure do |config|
+    #   HTTPartyCurl.configure do |config|
     #     config.curl_logging_enabled = true
     #     config.logger = Logger.new('log/httparty_curl.log')
     #   end
@@ -44,5 +44,5 @@ module HttpPartyCurl
   end
 
   # Load the Logger module containing the cURL logging functionality.
-  require_relative 'http_party_curl/logger'
+  require_relative 'httparty_curl/logger'
 end
