@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    http_party_curl (0.1.0)
+    httparty_curl (0.1.0)
       httparty
       logger
       minitest
@@ -65,7 +65,7 @@ PLATFORMS
   x86_64-darwin-23
 
 DEPENDENCIES
-  http_party_curl!
+  httparty_curl!
   httparty
   minitest
   rake

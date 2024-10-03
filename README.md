@@ -1,7 +1,7 @@
 
-# HttpPartyCurl::Logger
+# HTTPartyCurl::Logger
 
-`HttpPartyCurl::Logger` is a module that extends HTTParty to log HTTP requests as cURL commands. This is useful for debugging and inspecting outgoing requests in a readable format, replicating them in a terminal if needed.
+`HTTPartyCurl::Logger` is a module that extends HTTParty to log HTTP requests as cURL commands. This is useful for debugging and inspecting outgoing requests in a readable format, replicating them in a terminal if needed.
 
 ## Features
 
@@ -15,7 +15,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'http_party_curl'
+gem 'httparty_curl'
 ```
 
 And then execute:
@@ -27,19 +27,19 @@ bundle install
 Or install it yourself as:
 
 ```bash
-gem install http_party_curl
+gem install httparty_curl
 ```
 
 ## Usage
 
-To use `HttpPartyCurl::Logger`, simply include it in your class that uses HTTParty:
+To use `HTTPartyCurl::Logger`, simply include it in your class that uses HTTParty _after_ you include `Http:
 
 ```ruby
-require 'http_party_curl/logger'
+require 'httparty_curl/logger'
 
 class MyApiClient
   include HTTParty
-  include HttpPartyCurl::Logger
+  include HTTPartyCurl::Logger
 
   base_uri 'https://api.example.com'
 
@@ -53,10 +53,10 @@ Now, every request will be logged as a cURL command if logging is enabled.
 
 ### Enabling Logging
 
-To enable logging, you need to configure the `HttpPartyCurl` logger and set `curl_logging_enabled` to `true`. You can customize the logger based on your logging setup.
+To enable logging, you need to configure the `HTTPartyCurl` logger and set `curl_logging_enabled` to `true`. You can customize the logger based on your logging setup.
 
 ```ruby
-HttpPartyCurl.configure do |config|
+HTTPartyCurl.configure do |config|
   config.curl_logging_enabled = true
   config.logger = Logger.new(STDOUT) # or any other logger
 end
@@ -110,7 +110,7 @@ The cURL command generation handles headers, query parameters, and request body 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/yourusername/http_party_curl.
+Bug reports and pull requests are welcome on GitHub at https://github.com/thescubageek/httparty_curl.
 
 ## License
 

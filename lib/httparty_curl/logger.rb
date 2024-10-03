@@ -1,6 +1,6 @@
-# lib/http_party_curl/logger.rb
+# lib/httparty_curl/logger.rb
 
-module HttpPartyCurl
+module HTTPartyCurl
   # Module containing the cURL logging functionality.
   module Logger
     # List of proxy options to consider.
@@ -166,10 +166,10 @@ module HttpPartyCurl
       # @param uri [String] the request URI.
       # @param options [Hash] the request options.
       def log_curl(method, uri, options)
-        return unless HttpPartyCurl.configuration.curl_logging_enabled
+        return unless HTTPartyCurl.configuration.curl_logging_enabled
 
         curl_command = to_curl(method, uri, options)
-        HttpPartyCurl.configuration.logger.info("\nHTTParty cURL command:\n#{curl_command}\n")
+        HTTPartyCurl.configuration.logger.info("\nHTTParty cURL command:\n#{curl_command}\n")
       end
     end
   end
