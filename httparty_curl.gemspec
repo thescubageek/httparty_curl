@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.files         = Dir["lib/**/*", "test/**/*", "README.md", "LICENSE.txt"]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "httparty"
-  spec.add_dependency "logger"
-  spec.add_dependency "minitest"
+  spec.add_dependency "httparty", "~> 0.22"
+  spec.add_dependency "minitest", "~> 5.25"
+  spec.add_dependency "webmock", "~> 3.23"
 end
