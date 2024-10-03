@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     httparty_curl (0.1.0)
-      httparty
-      logger
-      minitest
+      httparty (~> 0.22)
+      minitest (~> 5.25)
+      webmock (~> 3.23)
 
 GEM
   remote: https://rubygems.org/
@@ -24,7 +24,6 @@ GEM
       multi_xml (>= 0.5.2)
     json (2.7.2)
     language_server-protocol (3.17.0.3)
-    logger (1.6.1)
     mini_mime (1.1.5)
     minitest (5.25.1)
     multi_xml (0.7.1)
@@ -65,12 +64,12 @@ PLATFORMS
   x86_64-darwin-23
 
 DEPENDENCIES
+  httparty (~> 0.22)
   httparty_curl!
-  httparty
-  minitest
+  minitest (~> 5.25)
   rake
   rubocop
-  webmock
+  webmock (~> 3.23)
 
 BUNDLED WITH
    2.5.15
